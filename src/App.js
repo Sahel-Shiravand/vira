@@ -16,13 +16,20 @@ const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
-
+const Links = React.lazy(() => import('./views/pages/links/Links'))
+const Users= React.lazy(() => import('./views/pages/users/Users'))
+const Carts= React.lazy(() => import('./views/pages/carts/Carts'))
+const Reports= React.lazy(() => import('./views/pages/reports/Reports'))
 class App extends Component {
   render() {
     return (
       <HashRouter>
         <Suspense fallback={loading}>
           <Routes>
+          <Route exact path="/report" name="report Page" element={<Reports/>} />
+          <Route exact path="/cart" name="cart Page" element={<Carts/>} />
+          <Route exact path="/user" name="User Page" element={<Users/>} />
+          <Route exact path="/links" name="Link Page" element={<Links/>} />
             <Route exact path="/login" name="Login Page" element={<Login />} />
             <Route exact path="/register" name="Register Page" element={<Register />} />
             <Route exact path="/404" name="Page 404" element={<Page404 />} />
