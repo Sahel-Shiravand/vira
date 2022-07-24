@@ -6,7 +6,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore, applyMiddleware } from "redux";
 const store = createStore(reducer, applyMiddleware(thunk));
-import reducer from "./views/pages/login/reducer";
+import reducer from "./views/pages/login/pro/reducer";
 import thunk from "redux-thunk";
 
 const rootElement = document.getElementById("root");

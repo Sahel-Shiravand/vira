@@ -1,0 +1,2 @@
+export const SET_FORMVALUES = "SET_FORMVALUES";
+export const SUBMIT_FORM = "SUBMIT_FORM";
