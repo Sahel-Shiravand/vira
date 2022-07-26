@@ -68,7 +68,6 @@ class SignInForm extends Component {
         })
     );
   };
-
   render() {
     return (
       <section style={{ backgroundColor: "#eee" }}>
@@ -192,8 +191,7 @@ class SignInForm extends Component {
                               />
                             </div>
                           </div>
-                          <div>
-                            
+                          <div>  
                             <Button
                               className="btn btn-primary btn-lg my-3"
                               variant="primary"
@@ -204,7 +202,6 @@ class SignInForm extends Component {
                             {this.state.isShow && <AlertVira
                             title={"ثبت "}
                             body={this.state.textMessage}
-
                             />}
                           </div>
                         </div>

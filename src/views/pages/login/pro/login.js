@@ -24,7 +24,6 @@ class login extends Component {
       textMessage: " ",
       isShow: false,
     };
-
   }
   isShowChange = () => {
     this.setState((prev,props)=>({
@@ -69,10 +68,8 @@ class login extends Component {
         })
     );
   };
-
   render() {
     return (
-      
       <section style={{ backgroundColor: "#eee" }}>
         <AppHeader/>
         <div className="container py-5 h-100">
@@ -111,9 +108,7 @@ class login extends Component {
                                 required
                               />
                             </div>
-                          </div>
-                          
-                          
+                          </div> 
                           <div className="row">
                             <div className="input-group md-3 p-3">
                               <input
@@ -131,7 +126,6 @@ class login extends Component {
                             </div>
                           </div>
                           <div>
-                            
                             <Button
                               className="btn btn-primary btn-lg my-3"
                               variant="primary"
