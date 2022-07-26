@@ -5,6 +5,9 @@ import "./style.css";
 import axios from "axios";
 import { SET_FORMVALUES, SUBMIT_FORM } from "../action/type";
 import {AppHeader,AppFooter,AppSidebar}from 'src/components';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import AlertVira from "src/views/pages/register/pro/Alert-Vira";
 class login extends Component {
   constructor(props) {
     super(props);
@@ -16,11 +19,19 @@ class login extends Component {
         email: "",
         password: "",
         username:"",
-      }
+      },
+      successMassege: false,
+      textMessage: " ",
+      isShow: false,
     };
 
   }
-
+  isShowChange = () => {
+    this.setState((prev,props)=>({
+      ...prev,
+      isShow:true
+    }));
+  }
   submitForm = (e) => {
     e.preventDefault();
     this.props.dispatch({
@@ -34,11 +45,16 @@ class login extends Component {
     axios
       .post(`http://37.32.31.227:8248/api/v1/users/login`, user)
       .then((response) => {
-        
-        if (response.data['success'] == true) {
-           alert(response.data['data'])
-          }
-        else alert(response.data['data'])
+        if (response.data["success"] == true) {
+          this.setState({ textMessage: response.data["data"] });
+          console.log("message1 = " + response.data["data"]);
+          this.isShowChange()
+        } else {
+          this.setState({ textMessage: response.data["data"] });
+          console.log("message1 = " + response.data["data"]);
+          console.log(this.state.textMessage);
+          this.isShowChange()
+        }
       });
   };
   handleInputChange = (e) => {
@@ -53,13 +69,7 @@ class login extends Component {
         })
     );
   };
- 
 
-  closeBox = () => {
-    this.setState({
-      isOpen: false
-    })
-  }
   render() {
     return (
       
@@ -120,13 +130,21 @@ class login extends Component {
                               />
                             </div>
                           </div>
-                          <button
-                            onClick={this.submitForm}
-                            type="submit"
-                            className="form-control btnLogin rounded submit"
-                          >
-                            ثبت نام
-                          </button>
+                          <div>
+                            
+                            <Button
+                              className="btn btn-primary btn-lg my-3"
+                              variant="primary"
+                              onClick={this.submitForm}
+                            >
+                               ورود
+                            </Button>
+                            {this.state.isShow && <AlertVira
+                            title={"ورود "}
+                            body={this.state.textMessage}
+
+                            />}
+                          </div>
                         </div>
                       </form>
                     </div>

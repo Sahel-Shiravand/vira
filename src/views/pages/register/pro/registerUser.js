@@ -5,8 +5,8 @@ import "./style.css";
 import axios from "axios";
 import { SET_FORMVALUES, SUBMIT_FORM } from "../action/type";
 import { AppHeader, AppFooter, AppSidebar } from "src/components";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import AlertVira from "./Alert-Vira";
 class SignInForm extends Component {
   constructor(props) {
@@ -22,12 +22,15 @@ class SignInForm extends Component {
       },
       successMassege: false,
       textMessage: " ",
+      isShow: false,
     };
   }
-  
-renderAlert=()=>{
-  return(<><h3>kjjk</h3></>);
-}
+  isShowChange = () => {
+    this.setState((prev,props)=>({
+      ...prev,
+      isShow:true
+    }));
+  }
   submitForm = (e) => {
     e.preventDefault();
     this.props.dispatch({
@@ -44,17 +47,12 @@ renderAlert=()=>{
         if (response.data["success"] == true) {
           this.setState({ textMessage: response.data["data"] });
           console.log("message1 = " + response.data["data"]);
-         this.renderAlert
+          this.isShowChange()
         } else {
           this.setState({ textMessage: response.data["data"] });
-          this.renderAlert();
-          <>
-          return(<AlertVira title={this.state.textMessage}
-                                   body={this.state.textMessage}
-                                   open={true}/>)
-          </>
           console.log("message1 = " + response.data["data"]);
-          console.log(this.state.textMessage)
+          console.log(this.state.textMessage);
+          this.isShowChange()
         }
       });
   };
@@ -194,9 +192,21 @@ renderAlert=()=>{
                               />
                             </div>
                           </div>
-                          <Button className="btn btn-primary btn-lg my-3" variant="primary" onClick={this.submitForm}>
-        ثبت نام
-      </Button>
+                          <div>
+                            
+                            <Button
+                              className="btn btn-primary btn-lg my-3"
+                              variant="primary"
+                              onClick={this.submitForm}
+                            >
+                              ثبت نام
+                            </Button>
+                            {this.state.isShow && <AlertVira
+                            title={"ثبت "}
+                            body={this.state.textMessage}
+
+                            />}
+                          </div>
                         </div>
                       </form>
                     </div>

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Alert-Vira.css';
 function AlertVira(props) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,7 +19,7 @@ function AlertVira(props) {
         ثبت نام
       </Button> */}
 
-      <Modal show={props.open} onHide={!props.open}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header className="header-modal" closeButton>
           <Modal.Title className="title-message">{props.title}</Modal.Title>
         </Modal.Header>
